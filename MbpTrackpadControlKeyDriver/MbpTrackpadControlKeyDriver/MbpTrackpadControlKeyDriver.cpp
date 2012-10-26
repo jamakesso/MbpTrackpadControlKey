@@ -6,6 +6,8 @@
 #include <IOKit/hidsystem/IOHIKeyboard.h>
 #include <IOKit/hidsystem/IOHIDSystem.h>
 
+#include "../../Logging.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 // jp_or_iij4u_ss_yamaoka_MbpTrackpadControlKeyDriver
@@ -121,6 +123,7 @@ IOReturn DRIVER_CLASS_NAME::setControlModifierKey(bool isActive)
     CONTROL_KEY = (NX_CONTROLMASK | NX_DEVICELCTLKEYMASK),
   };
   unsigned int dfs = keyboard_->deviceFlags();
+  IOLog("device flags from = %d\n", dfs);
   if (isActive) {
     IOLog("control down\n");
     dfs |= CONTROL_KEY;
@@ -129,7 +132,6 @@ IOReturn DRIVER_CLASS_NAME::setControlModifierKey(bool isActive)
     IOLog("control up\n");
     dfs &= ~CONTROL_KEY;
   }
-  IOLog("device flags from = %d\n", dfs);
   keyboard_->setDeviceFlags(dfs);
   IOLog("device flags to   = %d\n", keyboard_->deviceFlags());
   

@@ -45,24 +45,59 @@
                                    , IOServiceMatching(DRIVER_CLASS_NAME_STRING)
                                    , &iterator)
       != KERN_SUCCESS) {
+    NSAlert *alert
+    = [NSAlert alertWithMessageText:@"Error"
+                      defaultButton:@"Abort"
+                    alternateButton:nil
+                        otherButton:nil
+          informativeTextWithFormat:@"Failed to find the service of MbpTrackpadControlKeyDriver.kext."];
+    [alert runModal];
+    [NSApp terminate:self];
     return;
   }
   
-  connect_ = io_connect_t();
+  const io_connect_t nullConnect = io_connect_t();
+  connect_ = nullConnect;
   io_service_t service;
   while ((service = IOIteratorNext(iterator)) != IO_OBJECT_NULL) {
     if (IOServiceOpen(service, mach_task_self(), 0, &connect_) != KERN_SUCCESS) {
-      return;
+      break;
     }
     if (CUserClientFacade().openUserClient(connect_) != KERN_SUCCESS) {
-      return;
+      break;
     }
 	}
   IOObjectRelease(iterator);
   
-	if (connect_ == io_connect_t()) {
+	if (connect_ == nullConnect) {
+    NSAlert *alert
+    = [NSAlert alertWithMessageText:@"Error"
+                      defaultButton:@"Abort"
+                    alternateButton:nil
+                        otherButton:nil
+          informativeTextWithFormat:@"Failed to open the user client of MbpTrackpadControlKeyDriver.kext."];
+    [alert runModal];
+    [NSApp terminate:self];
     return;
 	}
+  
+//tohru[
+  // parallel desktop 上での動作では touchpad を取得出来ないので以下で test する。
+/*
+  BOOL pressing = NO;
+  while (true) {
+    pressing = !pressing;
+    if (pressing) {
+      NSLog(@"press on");
+    }
+    else {
+      NSLog(@"press off");
+    }
+    [self indicate:pressing];
+    sleep(3);
+  }
+*/
+//tohru]
   
   typedef std::shared_ptr<CTrackpadController> TCSP;
   __weak CMTCKAppDelegate* weakSelf = self;
@@ -74,7 +109,17 @@
                 }
               }));
   
-  _trackpadController->initiate();
+  if (!_trackpadController->initiate()) {
+    NSAlert *alert
+    = [NSAlert alertWithMessageText:@"Error"
+                      defaultButton:@"Abort"
+                    alternateButton:nil
+                        otherButton:nil
+          informativeTextWithFormat:@"Failed to access the trackpad device."];
+    [alert runModal];
+    [NSApp terminate:self];
+    return;
+  };
 }
 
 ////////////////////////////////////////////////////////////////////////////////

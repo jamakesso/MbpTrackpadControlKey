@@ -25,6 +25,7 @@
 		07C79BA41636EEEE00FEF0AB /* UserKernelShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserKernelShared.h; path = ../UserKernelShared.h; sourceTree = "<group>"; };
 		07C79BA71636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MbpTrackpadControlKeyUserClient.cpp; sourceTree = "<group>"; };
 		07C79BA81636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbpTrackpadControlKeyUserClient.h; sourceTree = "<group>"; };
+		07F416EE163A8D8D00FE9548 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = ../Logging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		07587DCE1633939D0007D552 = {
 			isa = PBXGroup;
 			children = (
+				07F416EE163A8D8D00FE9548 /* Logging.h */,
 				07C79BA41636EEEE00FEF0AB /* UserKernelShared.h */,
 				07587DE01633939D0007D552 /* MbpTrackpadControlKeyDriver */,
 				07587DDD1633939D0007D552 /* Frameworks */,
@@ -77,8 +79,8 @@
 			children = (
 				07C79BA71636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.cpp */,
 				07C79BA81636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.h */,
-				07587DE61633939D0007D552 /* MbpTrackpadControlKeyDriver.h */,
 				07587DE71633939D0007D552 /* MbpTrackpadControlKeyDriver.cpp */,
+				07587DE61633939D0007D552 /* MbpTrackpadControlKeyDriver.h */,
 				07587DE11633939D0007D552 /* Supporting Files */,
 			);
 			path = MbpTrackpadControlKeyDriver;
@@ -241,6 +243,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
