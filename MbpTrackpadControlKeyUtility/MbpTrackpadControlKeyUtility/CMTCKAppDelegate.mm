@@ -42,22 +42,6 @@
   [_statusItem setHighlightMode:YES];
   [_statusItem setMenu:_statusMenu];
   
-  // parallel desktop 上での動作では touchpad を取得出来ないので以下で driver を test する。
-#if 0
-  BOOL pressing = NO;
-  while (true) {
-    pressing = !pressing;
-    if (pressing) {
-      NSLog(@"press on");
-    }
-    else {
-      NSLog(@"press off");
-    }
-    [self indicate:pressing];
-    sleep(3);
-  }
-#endif
-  
   // create trackpad controller.
   
   typedef std::shared_ptr<CTrackpadController> TCSP;
@@ -74,6 +58,24 @@
   
   [self registerSleepWakeNotifications];
   
+  // parallel desktop 上での動作では touchpad を取得出来ないので以下で driver を test する。
+#if 0
+  [self initiateTrackpadEventHandling];
+  
+  BOOL pressing = NO;
+  while (true) {
+    pressing = !pressing;
+    if (pressing) {
+      NSLog(@"press on");
+    }
+    else {
+      NSLog(@"press off");
+    }
+    [self handleTrackpadEvent:pressing];
+    sleep(3);
+  }
+#endif
+
   // start event handling.
   
   if (![self initiateTrackpadEventHandling]) {
@@ -113,12 +115,12 @@
 {
   [[[NSWorkspace sharedWorkspace] notificationCenter]
    addObserver: self
-   selector: @selector(receiveSleepNote:)
+   selector: @selector(receiveSleepNotification:)
    name: NSWorkspaceWillSleepNotification object: NULL];
   
   [[[NSWorkspace sharedWorkspace] notificationCenter]
    addObserver: self
-   selector: @selector(receiveWakeNote:)
+   selector: @selector(receiveWakeNotification:)
    name: NSWorkspaceDidWakeNotification object: NULL];
 }
 

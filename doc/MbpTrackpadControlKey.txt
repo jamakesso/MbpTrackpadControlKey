@@ -1,0 +1,24 @@
+MbpTrackpadControlKey development note
+
+yamaoka@ss.iij4u.or.jp
+
+2012.11.25
+
+--
+sleep からの wake 後に crash する不具合に対応する。
+
+当初 driver 側の sleep, wake 処理が不十分なのかと疑ったが driver 側に対応の必要はない模様。
+
+問題は utility 側の sleep, wake 処理で、同 sleep, wake handler の selector 名が間違っ
+ていた。
+
+しょうもな。
+
+--
+driver を検出する方法を IOHIDSystem の getProviderIterator を使った方法から
+gIOMatchedNotification, gIOTerminatedNotification の notification を利用した方法に
+変更する。
+
+後者だと keyboard の接続時に fire されるので。
+
+本 application では関係ないけど。

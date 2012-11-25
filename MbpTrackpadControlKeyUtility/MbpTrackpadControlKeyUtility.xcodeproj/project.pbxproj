@@ -44,7 +44,6 @@
 		07C79B8716339AD900FEF0AB /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1.png; path = images/icon1.png; sourceTree = SOURCE_ROOT; };
 		07C79B8816339AD900FEF0AB /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2.png; path = images/icon2.png; sourceTree = SOURCE_ROOT; };
 		07C79BA11636EDED00FEF0AB /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		07C79BB51636EF4100FEF0AB /* UserKernelShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserKernelShared.h; path = ../UserKernelShared.h; sourceTree = "<group>"; };
 		07D87F90162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MbpTrackpadControlKeyUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D87F94162EF9EB00CDB8AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		07D87F97162EF9EB00CDB8AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -103,7 +102,6 @@
 		07D87F85162EF9EB00CDB8AC = {
 			isa = PBXGroup;
 			children = (
-				07C79BB51636EF4100FEF0AB /* UserKernelShared.h */,
 				07C79B8616339AAA00FEF0AB /* images */,
 				07D87F9A162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtility */,
 				07D87FB7162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests */,

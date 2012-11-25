@@ -38,6 +38,27 @@ public:
 private:
   IOHIDSystem* system_;
   IOHIKeyboard* keyboard_;
+
+private:
+  IONotifier* keyboardMatchedNotifier_;
+  IONotifier* keyboardTerminatedNotifier_;
+
+  static bool keyboardMatchedNotificationHandler
+              (void* target
+               , void* refCon
+               , IOService* newService
+               , IONotifier* notifier);
+  static bool keyboardTerminatedNotificationHandler
+              (void* target
+               , void* refCon
+               , IOService* newService
+               , IONotifier* notifier);
+  
+  void initialize();
+  void finalize();
+  
+  bool initiateNotification();
+  void terminateNotification();
 };
 
 #endif

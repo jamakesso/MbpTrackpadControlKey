@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "doc">
+      <FileRef
+         location = "group:doc/MbpTrackpadControlKey.txt">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:MbpTrackpadControlKeyDriver/../Logging.h">
+   </FileRef>
+   <FileRef
+      location = "group:MbpTrackpadControlKeyDriver/../UserKernelShared.h">
+   </FileRef>
    <FileRef
       location = "group:MbpTrackpadControlKeyDriver/MbpTrackpadControlKeyDriver.xcodeproj">
    </FileRef>

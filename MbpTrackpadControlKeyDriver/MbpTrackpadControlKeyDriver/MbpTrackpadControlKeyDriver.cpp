@@ -3,6 +3,7 @@
 
 #include "./MbpTrackpadControlKeyDriver.h"
 #include <IOKit/IOLib.h>
+#include <IOKit/hid/IOHIDKeys.h>
 #include <IOKit/hidsystem/IOHIKeyboard.h>
 #include <IOKit/hidsystem/IOHIDSystem.h>
 
@@ -71,24 +72,15 @@ bool DRIVER_CLASS_NAME::start(IOService* provider)
     IOLog("error: IOHIDSystem not loaded.\n");
     return false;
   }
-  
-  OSIterator* sources = system_->getProviderIterator();
-  if (sources) {
-    int count = 0;
-    while (OSObject* source = sources->getNextObject()) {
-      // 最初に見つかった keyboard を MBP の keyboard と考える。
-      if (OSDynamicCast(IOHIKeyboard, source)) {
-        if (keyboard_ == NULL) {
-          keyboard_ = reinterpret_cast<IOHIKeyboard*>(source);
-        }
-        ++count;
-      }
-    }
-    sources->release();
-    IOLog("MbpTrackpadControlKeyDriver found %d keyboard(s).\n", count);
+
+  if (!initiateNotification()) {
+    IOLog("error: initiateNotification.\n");
+    return false;
   }
 
   registerService();
+
+  IOLog("DRIVER_CLASS_NAME::start succeeded.\n");
   
   return true;
 }
@@ -101,7 +93,9 @@ void DRIVER_CLASS_NAME::stop(IOService* provider)
   
   system_ = NULL;
   keyboard_ = NULL;
-  
+
+  terminateNotification();
+
   DSuper::stop(provider);
 }
 
@@ -136,4 +130,117 @@ IOReturn DRIVER_CLASS_NAME::setControlModifierKey(bool isActive)
   IOLog("device flags to   = %d\n", keyboard_->deviceFlags());
   
   return kIOReturnSuccess;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+bool DRIVER_CLASS_NAME::keyboardMatchedNotificationHandler
+(void* target
+ , void* refCon
+ , IOService* newService
+ , IONotifier* notifier)
+{
+  IOLog("%s newService:%p\n", __FUNCTION__, newService);
+  
+  IOHIKeyboard* keyboard = OSDynamicCast(IOHIKeyboard, newService);
+  if (!keyboard) {
+    return false;
+  }
+
+  const OSNumber* vid = OSDynamicCast(OSNumber, keyboard->getProperty(kIOHIDVendorIDKey));
+  const OSNumber* pid = OSDynamicCast(OSNumber, keyboard->getProperty(kIOHIDProductIDKey));
+  const char* name = keyboard->getName();
+  const OSString* manufacturer = OSDynamicCast(OSString, keyboard->getProperty(kIOHIDManufacturerKey));
+  const OSString* product = OSDynamicCast(OSString, keyboard->getProperty(kIOHIDProductKey));
+
+  IOLog("device: name         = %s\n", name);
+  IOLog("device: manufacturer = %s\n", manufacturer->getCStringNoCopy());
+  IOLog("device: product      = %s\n", product->getCStringNoCopy());
+  IOLog("device: vender ID    = %lld\n", vid->unsigned64BitValue());
+  IOLog("device: product ID   = %lld\n", pid->unsigned64BitValue());
+
+  if (::strcmp(name, "IOHIDConsumer") == 0) {
+    return false;
+  }
+
+  // 最初に見つかった keyboard を MBP の keyboard と考える。
+  DRIVER_CLASS_NAME* driver = static_cast<DRIVER_CLASS_NAME*>(target);
+  if (driver->keyboard_ == NULL) {
+    driver->keyboard_ = keyboard;
+    IOLog("MbpTrackpadControlKeyDriver has detected a keyboard.\n");
+  }
+  
+  return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+bool DRIVER_CLASS_NAME::keyboardTerminatedNotificationHandler
+(void* target
+ , void* refCon
+ , IOService* newService
+ , IONotifier* notifier)
+{
+  IOLog("%s newService:%p\n", __FUNCTION__, newService);
+  
+  IOHIDevice* keyboard = OSDynamicCast(IOHIKeyboard, newService);
+  if (!keyboard) {
+    return false;
+  }
+  
+  const char* name = keyboard->getName();
+  if (::strcmp(name, "IOHIDConsumer") == 0) {
+    return true;
+  }
+  
+  DRIVER_CLASS_NAME* driver = static_cast<DRIVER_CLASS_NAME*>(target);
+  if (driver->keyboard_ != NULL) {
+    driver->keyboard_ = NULL;
+    IOLog("MbpTrackpadControlKeyDriver has released the keyboard.\n");
+  }
+  
+  return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+bool DRIVER_CLASS_NAME::initiateNotification()
+{
+  keyboardMatchedNotifier_
+  = addMatchingNotification(gIOMatchedNotification
+                            , serviceMatching("IOHIKeyboard")
+                            , keyboardMatchedNotificationHandler
+                            , this
+                            , NULL
+                            , 0);
+  if (keyboardMatchedNotifier_ == NULL) {
+    IOLog("initiateNotification keyboardMatchedNotifier_ == NULL\n");
+    return false;
+  }
+  
+  keyboardTerminatedNotifier_
+  = addMatchingNotification(gIOTerminatedNotification
+                            , serviceMatching("IOHIKeyboard")
+                            , keyboardTerminatedNotificationHandler
+                            , this
+                            , NULL
+                            , 0);
+  if (keyboardTerminatedNotifier_ == NULL) {
+    IOLog("initiateNotification keyboardTerminatedNotifier_ == NULL\n");
+    return false;
+  }
+  
+  return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+void DRIVER_CLASS_NAME::terminateNotification()
+{
+  if (keyboardMatchedNotifier_ != NULL) {
+    keyboardMatchedNotifier_->remove();
+  }
+  if (keyboardTerminatedNotifier_ != NULL) {
+    keyboardTerminatedNotifier_->remove();
+  }
 }

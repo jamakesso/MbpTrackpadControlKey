@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		07587DE51633939D0007D552 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07587DE31633939D0007D552 /* InfoPlist.strings */; };
 		07587DE81633939D0007D552 /* MbpTrackpadControlKeyDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07587DE71633939D0007D552 /* MbpTrackpadControlKeyDriver.cpp */; };
-		07C79BA51636EEEE00FEF0AB /* UserKernelShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C79BA41636EEEE00FEF0AB /* UserKernelShared.h */; };
 		07C79BA91636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C79BA71636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.cpp */; };
 		07C79BAA1636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C79BA81636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.h */; };
 /* End PBXBuildFile section */
@@ -22,10 +21,8 @@
 		07587DE61633939D0007D552 /* MbpTrackpadControlKeyDriver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MbpTrackpadControlKeyDriver.h; sourceTree = "<group>"; };
 		07587DE71633939D0007D552 /* MbpTrackpadControlKeyDriver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MbpTrackpadControlKeyDriver.cpp; sourceTree = "<group>"; };
 		07587DE91633939D0007D552 /* MbpTrackpadControlKeyDriver-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MbpTrackpadControlKeyDriver-Prefix.pch"; sourceTree = "<group>"; };
-		07C79BA41636EEEE00FEF0AB /* UserKernelShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserKernelShared.h; path = ../UserKernelShared.h; sourceTree = "<group>"; };
 		07C79BA71636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MbpTrackpadControlKeyUserClient.cpp; sourceTree = "<group>"; };
 		07C79BA81636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MbpTrackpadControlKeyUserClient.h; sourceTree = "<group>"; };
-		07F416EE163A8D8D00FE9548 /* Logging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = ../Logging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,8 +39,6 @@
 		07587DCE1633939D0007D552 = {
 			isa = PBXGroup;
 			children = (
-				07F416EE163A8D8D00FE9548 /* Logging.h */,
-				07C79BA41636EEEE00FEF0AB /* UserKernelShared.h */,
 				07587DE01633939D0007D552 /* MbpTrackpadControlKeyDriver */,
 				07587DDD1633939D0007D552 /* Frameworks */,
 				07587DDC1633939D0007D552 /* Products */,
@@ -103,7 +98,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07C79BA51636EEEE00FEF0AB /* UserKernelShared.h in Headers */,
 				07C79BAA1636EEFB00FEF0AB /* MbpTrackpadControlKeyUserClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
