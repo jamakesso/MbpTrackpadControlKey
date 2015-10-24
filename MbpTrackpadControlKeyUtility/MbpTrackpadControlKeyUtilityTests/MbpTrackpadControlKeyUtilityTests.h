@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 YAMAOKA Tohru. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface MbpTrackpadControlKeyUtilityTests : SenTestCase
+@interface MbpTrackpadControlKeyUtilityTests : XCTestCase
 
 @end

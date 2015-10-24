@@ -51,6 +51,9 @@
              ([weakSelf](bool isActive) {
                 @autoreleasepool {
                   [weakSelf handleTrackpadEvent:isActive];
+                  if (!isActive) {
+                    [weakSelf handleTrackpadEvent:isActive];
+                  }
                 }
               }));
 

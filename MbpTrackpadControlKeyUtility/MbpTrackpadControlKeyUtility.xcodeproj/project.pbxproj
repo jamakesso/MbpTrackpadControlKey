@@ -18,7 +18,6 @@
 		07D87FA1162EF9EB00CDB8AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D87FA0162EF9EB00CDB8AC /* main.m */; };
 		07D87FA5162EF9EB00CDB8AC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 07D87FA3162EF9EB00CDB8AC /* Credits.rtf */; };
 		07D87FAB162EF9EB00CDB8AC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07D87FA9162EF9EB00CDB8AC /* MainMenu.xib */; };
-		07D87FB3162EF9EB00CDB8AC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D87FB2162EF9EB00CDB8AC /* SenTestingKit.framework */; };
 		07D87FB4162EF9EB00CDB8AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D87F94162EF9EB00CDB8AC /* Cocoa.framework */; };
 		07D87FBC162EF9EB00CDB8AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07D87FBA162EF9EB00CDB8AC /* InfoPlist.strings */; };
 		07D87FBF162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D87FBE162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.m */; };
@@ -56,8 +55,7 @@
 		07D87FA4162EF9EB00CDB8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		07D87FA6162EF9EB00CDB8AC /* CMTCKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMTCKAppDelegate.h; sourceTree = "<group>"; };
 		07D87FAA162EF9EB00CDB8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		07D87FB1162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MbpTrackpadControlKeyUtilityTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		07D87FB2162EF9EB00CDB8AC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		07D87FB1162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MbpTrackpadControlKeyUtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D87FB9162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MbpTrackpadControlKeyUtilityTests-Info.plist"; sourceTree = "<group>"; };
 		07D87FBB162EF9EB00CDB8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07D87FBD162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MbpTrackpadControlKeyUtilityTests.h; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07D87FB3162EF9EB00CDB8AC /* SenTestingKit.framework in Frameworks */,
 				07D87FB4162EF9EB00CDB8AC /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				07D87F90162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtility.app */,
-				07D87FB1162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.octest */,
+				07D87FB1162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,7 +121,6 @@
 			children = (
 				07D87F94162EF9EB00CDB8AC /* Cocoa.framework */,
 				07C79BA11636EDED00FEF0AB /* IOKit.framework */,
-				07D87FB2162EF9EB00CDB8AC /* SenTestingKit.framework */,
 				07D87F96162EF9EB00CDB8AC /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -224,8 +220,8 @@
 			);
 			name = MbpTrackpadControlKeyUtilityTests;
 			productName = MbpTrackpadControlKeyUtilityTests;
-			productReference = 07D87FB1162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 07D87FB1162EF9EB00CDB8AC /* MbpTrackpadControlKeyUtilityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -234,7 +230,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CMTCK;
-				LastUpgradeCheck = 0450;
+				LastTestingUpgradeCheck = 0610;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "YAMAOKA Tohru";
 			};
 			buildConfigurationList = 07D87F8A162EF9EB00CDB8AC /* Build configuration list for PBXProject "MbpTrackpadControlKeyUtility" */;
@@ -364,7 +361,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -394,7 +390,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -450,13 +445,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MbpTrackpadControlKeyUtility.app/Contents/MacOS/MbpTrackpadControlKeyUtility";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MbpTrackpadControlKeyUtility/MbpTrackpadControlKeyUtility-Prefix.pch";
 				INFOPLIST_FILE = "MbpTrackpadControlKeyUtilityTests/MbpTrackpadControlKeyUtilityTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -465,13 +462,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MbpTrackpadControlKeyUtility.app/Contents/MacOS/MbpTrackpadControlKeyUtility";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MbpTrackpadControlKeyUtility/MbpTrackpadControlKeyUtility-Prefix.pch";
 				INFOPLIST_FILE = "MbpTrackpadControlKeyUtilityTests/MbpTrackpadControlKeyUtilityTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
