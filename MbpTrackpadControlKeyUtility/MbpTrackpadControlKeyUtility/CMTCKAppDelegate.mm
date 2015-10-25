@@ -47,15 +47,13 @@
   typedef std::shared_ptr<CTrackpadController> TCSP;
   __weak CMTCKAppDelegate* weakSelf = self;
   _trackpadController
-  = TCSP(new CTrackpadController
-             ([weakSelf](bool isActive) {
-                @autoreleasepool {
-                  [weakSelf handleTrackpadEvent:isActive];
-                  if (!isActive) {
-                    [weakSelf handleTrackpadEvent:isActive];
-                  }
-                }
-              }));
+  = TCSP(new CTrackpadController(
+      [weakSelf](bool isActive) {
+        @autoreleasepool {
+          [weakSelf handleTrackpadEvent:isActive];
+        }
+      }
+    ));
 
   // register sleep, wake notification.
   
